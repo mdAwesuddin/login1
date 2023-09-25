@@ -395,13 +395,14 @@
             // Display "No data found" message if no matching rows were found
             noDataFound.style.display = found ? "none" : "block";
             // firstrow.style.display=found?"none":"block";
-        });
-      function deleteData(button) {
+            });
+
+         function deleteData(button) {
             console.log(button.parentNode.parentNode.parentNode);
             let row = button.parentNode.parentNode.parentNode;
             row.parentNode.removeChild(row);
             console.log(row);
-        }
+           }
 
         function editData(td){
          selectedrow = td.parentNode.parentNode;
@@ -439,25 +440,14 @@
           // clearErrors();
           clearInputs();
         }
-        function clearInputs() {
-          document.getElementById("firstname").value = "";
-          document.getElementById("lastname").value = "";
-          document.getElementById("email").value = "";
-          document.getElementById("phone").value = "";
-          document.getElementById("image-input").value = "";
-          imagePreview.src = "";
-          // validfirstnamedata = false;
-          // validlastnamedata = false;
-          // validemaildata = false;
-          // validPhoneData = false;
-          // validPhotoData = false;
-          firstnamemgs.textContent = "";
-          lastnamemgs.textContent = "";
-          phonemgs.textContent = "";
-          photomgs.textContent = "";
-          emailmgs.textContent = "";
 
+        function clearInputs() {
+            previewImage.src="";
+            document.getElementById("user-form").reset();
+            imageUpload.value="";
+            
         }
+
         function clearErrors() {
             error1.textContent = "";
             error2.textContent = "";
@@ -465,6 +455,7 @@
             error4.textContent = "";
             error5.textContent = "";
         }
+
        function validation(event){
         event.preventDefault();
         document.querySelector(".popup").classList.add("active");
@@ -494,7 +485,6 @@
         error5.textContent = "This field is required";
     }
     });
-
 
      submit.addEventListener("click", (e)=>{
      e.preventDefault()
