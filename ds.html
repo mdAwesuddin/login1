@@ -172,7 +172,7 @@
     </nav>
     <div class="content">
       <input type="text" id="searchInput" placeholder="Search..." >
-        <input type="button" value="Add-User" class="useradd" onclick="validation(event)">
+        <input type="button" value="Add-User" class="useradd" onclick="openpopup(event)">
     </div>
     <div class="data">
         <br>
@@ -456,7 +456,7 @@
             error5.textContent = "";
         }
 
-       function validation(event){
+       function openpopup(event){
         event.preventDefault();
         document.querySelector(".popup").classList.add("active");
          document.querySelector(".popup .close-btn").addEventListener("click",function(){
@@ -486,11 +486,82 @@
     }
     });
 
-     submit.addEventListener("click", (e)=>{
-     e.preventDefault()
-    if(firstnamedata && lastnamedata  && maildata && numdata && validPhotoData){
-      e.preventDefault();
-        databody.innerHTML += `
+//      submit.addEventListener("click", (e)=>{
+//      e.preventDefault()
+//     if(firstnamedata && lastnamedata  && maildata && numdata && validPhotoData){
+//       e.preventDefault();
+//         databody.innerHTML += `
+//         <tr id="tr">
+//                 <th>Profile</th>
+//                 <th>Frist Name</th>
+//                 <th>Last Name</th>
+//                 <th>E-mail</th>
+//                 <th>Mobile Number</th>
+//                 <th>Actions</th>
+//             </tr>
+//         <tr>
+//         <td  data-title="Profile"><img src="${cardimageurl}" alt="image" id="image8"></td>
+//         <td data-title="FristName">${firstname.value}</td>
+//         <td  data-title="LastName">${lastname.value}</td>
+//         <td  data-title="Email">${mail.value}</td>
+//         <td  data-title="Phone number">${num.value}</td>
+//         <td  data-title="Actions"><input type="button" id="edit-btn" value="Edit" onclick="editData(this)">&nbsp<input type="button" id="delete-btn" value="Delete" onclick="deleteData(this)"></td>
+//         </tr>`
+      
+//        document.querySelector(".popup").classList.remove("active")
+//        clearInputs();
+//        clearErrors();
+//     }
+//     else if(firstnamedata){
+//       error2.textContent="Field is required";
+//       error3.textContent="Field is required";
+//       error4.textContent="Field is required";
+//       error5.textContent="Field is required";
+//     }
+//     else if(lastnamedata){
+//       error1.textContent="Field is required";
+//       error3.textContent="Field is required";
+//       error4.textContent="Field is required";
+//       error5.textContent="Field is required";
+//     }
+//     else if(maildata){
+//       error1.textContent="Field is required";
+//       error2.textContent="Field is required";
+//       error4.textContent="Field is required";     
+//       error5.textContent="Field is required";
+//     }
+//     else if(numdata){
+//       error1.textContent="Field is required";
+//       error2.textContent="Field is required";
+//       error3.textContent="Field is required";
+//       error5.textContent="Field is required";
+//     }
+//     else if(validPhotoData){
+//       error1.textContent="Field is required";
+//       error2.textContent="Field is required";
+//       error3.textContent="Field is required";
+//       error4.textContent="Field is required";
+//     }
+//    else{
+//     error1.textContent="Field is required";
+//     error2.textContent="Field is required";
+//     error3.textContent="Field is required";
+//     error4.textContent="Field is required";
+//     error5.textContent="Field is required";
+//    }
+// })
+submit.addEventListener("click", (e) => {
+    e.preventDefault();
+     
+    if (!firstnamedata || !lastnamedata || !maildata || !numdata || !validPhotoData) {
+      error1.textContent="Field is required";
+      error2.textContent="Field is required";
+      error3.textContent="Field is required";
+      error4.textContent="Field is required";
+      error5.textContent="Field is required";
+        return; // Prevent form submission if any field is invalid
+    }
+    databody.innerHTML += `
         <tr id="tr">
                 <th>Profile</th>
                 <th>Frist Name</th>
@@ -511,45 +582,8 @@
        document.querySelector(".popup").classList.remove("active")
        clearInputs();
        clearErrors();
-    }
-    else if(firstnamedata){
-      error2.textContent="Field is required";
-      error3.textContent="Field is required";
-      error4.textContent="Field is required";
-      error5.textContent="Field is required";
-    }
-    else if(lastnamedata){
-      error1.textContent="Field is required";
-      error3.textContent="Field is required";
-      error4.textContent="Field is required";
-      error5.textContent="Field is required";
-    }
-    else if(maildata){
-      error1.textContent="Field is required";
-      error2.textContent="Field is required";
-      error4.textContent="Field is required";     
-      error5.textContent="Field is required";
-    }
-    else if(numdata){
-      error1.textContent="Field is required";
-      error2.textContent="Field is required";
-      error3.textContent="Field is required";
-      error5.textContent="Field is required";
-    }
-    else if(validPhotoData){
-      error1.textContent="Field is required";
-      error2.textContent="Field is required";
-      error3.textContent="Field is required";
-      error4.textContent="Field is required";
-    }
-   else{
-    error1.textContent="Field is required";
-    error2.textContent="Field is required";
-    error3.textContent="Field is required";
-    error4.textContent="Field is required";
-    error5.textContent="Field is required";
-   }
-})
+    
+});
     </script>
 </body>
 </html>
