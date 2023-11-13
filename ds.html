@@ -85,7 +85,11 @@
         font-size: 1.15em;
       }
       #error-msg, #error-msg1, #error-msg2, #error-msg3, #error-msg4{
+        display: flex;
+        padding: 2px;
+        /* padding-left: 25px; */
         font-size: 12px;
+        justify-content: center;
       }
       @media (max-width:500px){
         /* table{
@@ -239,10 +243,10 @@
       const images=[]
 
       var firstname = document.getElementById("fname-field")
-      const lastname = document.getElementById("lname-field");
-      const mail = document.getElementById("mail-field")
-      const num = document.getElementById("num-field")
-      const submit=document.getElementsByClassName("btn1")[0];
+      let lastname = document.getElementById("lname-field");
+      let mail = document.getElementById("mail-field")
+      let num = document.getElementById("num-field")
+      let submit=document.getElementsByClassName("btn1")[0];
       let imageUpload = document.getElementById('image-upload');
       let previewImage = document.getElementById('preview-image');
       let previewImage1 = document.getElementById('preview-image1');
@@ -250,7 +254,6 @@
       let databody = document.getElementById("data2");
       
       let cardImageURL=""
-      var x;
       var firstnamedata;
       var lastnamedata;
       var maildata;
@@ -325,44 +328,6 @@
         }
       }
 
-      // var searchInput = document.getElementById("searchInput");
-
-      //   // Add an input event listener to trigger search
-      //   searchInput.addEventListener("input", function() {
-      //       var searchTerm = searchInput.value.trim().toLowerCase();
-      //       var rows = databody.getElementsByTagName("tr");
-      //       console.log(rows);
-      //       // Loop through rows starting from the second row (index 1)
-      //       for (var i = 1; i < rows.length; i++) {
-      //           var row = rows[i];
-      //           console.log(row);
-      //           var cells = row.getElementsByTagName("td");
-      //           var rowMatch = false;
-                
-      //           if (searchTerm === "") {
-      //               row.classList.remove("highlight");
-      //           } else {
-      //               for (var j = 1; j < cells.length; j++) {
-      //                   var cell = cells[j];
-      //                   var cellText = cell.textContent.trim().toLowerCase();
-                        
-      //                   // If a match is found, highlight the row and break
-      //                   if (cellText.includes(searchTerm)) {
-      //                       rowMatch = true;
-      //                       break;
-      //                   }
-      //               }
-
-      //               // Apply or remove the highlight class based on the match status
-      //               if (rowMatch) {
-      //                   row.classList.add("highlight");
-      //                   console.log(row.classList.add("highlight"));
-      //               } else {
-      //                   row.classList.remove("highlight");
-      //               }
-      //           }
-      //       }
-      //   });
       var searchInput = document.getElementById("searchInput");
         
         var noDataFound = document.getElementById("noDataFound");
@@ -397,7 +362,7 @@
             // firstrow.style.display=found?"none":"block";
             });
 
-         function deleteData(button) {
+        function deleteData(button) {
             console.log(button.parentNode.parentNode.parentNode);
             let row = button.parentNode.parentNode.parentNode;
             row.parentNode.removeChild(row);
@@ -443,9 +408,18 @@
 
         function clearInputs() {
             previewImage.src="";
-            document.getElementById("user-form").reset();
+            // document.getElementById("user-form").reset();
             imageUpload.value="";
-            
+            firstname.value="";
+            lastname.value="";
+            mail.value="";
+            num.value="";
+            firstnamedata=false;
+            lastnamedata=false;
+            maildata=false;
+            numdata=false;
+            validPhotoData=false;
+            console.log(firstnamedata, lastnamedata, maildata,numdata,validPhotoData)
         }
 
         function clearErrors() {
@@ -486,82 +460,11 @@
     }
     });
 
-//      submit.addEventListener("click", (e)=>{
-//      e.preventDefault()
-//     if(firstnamedata && lastnamedata  && maildata && numdata && validPhotoData){
-//       e.preventDefault();
-//         databody.innerHTML += `
-//         <tr id="tr">
-//                 <th>Profile</th>
-//                 <th>Frist Name</th>
-//                 <th>Last Name</th>
-//                 <th>E-mail</th>
-//                 <th>Mobile Number</th>
-//                 <th>Actions</th>
-//             </tr>
-//         <tr>
-//         <td  data-title="Profile"><img src="${cardimageurl}" alt="image" id="image8"></td>
-//         <td data-title="FristName">${firstname.value}</td>
-//         <td  data-title="LastName">${lastname.value}</td>
-//         <td  data-title="Email">${mail.value}</td>
-//         <td  data-title="Phone number">${num.value}</td>
-//         <td  data-title="Actions"><input type="button" id="edit-btn" value="Edit" onclick="editData(this)">&nbsp<input type="button" id="delete-btn" value="Delete" onclick="deleteData(this)"></td>
-//         </tr>`
-      
-//        document.querySelector(".popup").classList.remove("active")
-//        clearInputs();
-//        clearErrors();
-//     }
-//     else if(firstnamedata){
-//       error2.textContent="Field is required";
-//       error3.textContent="Field is required";
-//       error4.textContent="Field is required";
-//       error5.textContent="Field is required";
-//     }
-//     else if(lastnamedata){
-//       error1.textContent="Field is required";
-//       error3.textContent="Field is required";
-//       error4.textContent="Field is required";
-//       error5.textContent="Field is required";
-//     }
-//     else if(maildata){
-//       error1.textContent="Field is required";
-//       error2.textContent="Field is required";
-//       error4.textContent="Field is required";     
-//       error5.textContent="Field is required";
-//     }
-//     else if(numdata){
-//       error1.textContent="Field is required";
-//       error2.textContent="Field is required";
-//       error3.textContent="Field is required";
-//       error5.textContent="Field is required";
-//     }
-//     else if(validPhotoData){
-//       error1.textContent="Field is required";
-//       error2.textContent="Field is required";
-//       error3.textContent="Field is required";
-//       error4.textContent="Field is required";
-//     }
-//    else{
-//     error1.textContent="Field is required";
-//     error2.textContent="Field is required";
-//     error3.textContent="Field is required";
-//     error4.textContent="Field is required";
-//     error5.textContent="Field is required";
-//    }
-// })
-submit.addEventListener("click", (e) => {
-    e.preventDefault();
-     
-    if (!firstnamedata || !lastnamedata || !maildata || !numdata || !validPhotoData) {
-      error1.textContent="Field is required";
-      error2.textContent="Field is required";
-      error3.textContent="Field is required";
-      error4.textContent="Field is required";
-      error5.textContent="Field is required";
-        return; // Prevent form submission if any field is invalid
-    }
-    databody.innerHTML += `
+     submit.addEventListener("click", (e)=>{
+     e.preventDefault()
+    if(firstnamedata && lastnamedata  && maildata && numdata && validPhotoData){
+      e.preventDefault();
+        databody.innerHTML += `
         <tr id="tr">
                 <th>Profile</th>
                 <th>Frist Name</th>
@@ -582,8 +485,136 @@ submit.addEventListener("click", (e) => {
        document.querySelector(".popup").classList.remove("active")
        clearInputs();
        clearErrors();
-    
-});
+    }
+      else if(firstnamedata && lastnamedata && maildata && numdata){
+        error5.textContent="Field is required"; 
+      }
+      else if(firstnamedata && lastnamedata && maildata && validPhotoData){
+        error4.textContent="Field is required";
+      }
+      else if(numdata && lastnamedata && maildata && validPhotoData){
+        error1.textContent="Field is required"; 
+      }
+      else if(numdata && firstnamedata && maildata && validPhotoData){
+        error2.textContent="Field is required"; 
+      }
+      else if(numdata && lastnamedata && firstnamedata && validPhotoData){
+        error3.textContent="Field is required"; 
+      }
+      else if(firstnamedata && lastnamedata && maildata){
+        error4.textContent="Field is required"; 
+        error5.textContent="Field is required"; 
+      }
+      else if(firstnamedata && maildata && numdata){
+        error2.textContent="Field is required"; 
+        error5.textContent="Field is required"; 
+      }
+      else if(firstnamedata && maildata && validPhotoData){
+        error2.textContent="Field is required"; 
+        error4.textContent="Field is required"; 
+      }
+      else if(firstnamedata && numdata && validPhotoData){
+        error2.textContent="Field is required"; 
+        error3.textContent="Field is required"; 
+      }
+      else if(firstnamedata && lastnamedata && validPhotoData){
+        error3.textContent="Field is required"; 
+        error4.textContent="Field is required"; 
+      }
+      else if(firstnamedata && lastnamedata && numdata){
+        error3.textContent="Field is required"; 
+        error5.textContent="Field is required"; 
+      }
+      else if(firstnamedata && maildata && numdata){
+        error2.textContent="Field is required"; 
+        error5.textContent="Field is required"; 
+      }
+      else if(firstnamedata && lastnamedata){
+      error3.textContent="Field is required";
+      error4.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(firstnamedata && maildata){
+      error2.textContent="Field is required"
+      error4.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(firstnamedata && numdata){
+      error2.textContent="Field is required";
+      error3.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(firstnamedata && validPhotoData){
+      error2.textContent="Field is required";
+      error3.textContent="Field is required";
+      error4.textContent="Field is required";  
+    }
+      else if(lastnamedata && maildata){
+      error1.textContent="Field is required";
+      error4.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(lastnamedata && numdata){
+       error1.textContent="Field is required";
+       error3.textContent="Field is required";
+       error5.textContent="Field is required";
+    }
+      else if(lastnamedata && validPhotoData){
+         error1.textContent="Field is required";
+         error3.textContent="Field is required";
+         error4.textContent="Field is required";
+      }
+       else if(maildata && numdata){
+        error1.textContent="Field is required";
+        error2.textContent="Field is required";
+        error5.textContent="Field is required";
+
+      }
+       else if(maildata && validPhotoData){
+        error1.textContent="Field is required"; 
+        error2.textContent="Field is required";
+        error4.textContent="Field is required";
+      }
+      else if(firstnamedata){
+      error2.textContent="Field is required";
+      error3.textContent="Field is required";
+      error4.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(lastnamedata){
+      error1.textContent="Field is required";
+      error3.textContent="Field is required";
+      error4.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(maildata){
+      error1.textContent="Field is required";
+      error2.textContent="Field is required";
+      error4.textContent="Field is required";     
+      error5.textContent="Field is required";
+    }
+      else if(numdata){
+      error1.textContent="Field is required";
+      error2.textContent="Field is required";
+      error3.textContent="Field is required";
+      error5.textContent="Field is required";
+    }
+      else if(validPhotoData){
+      error1.textContent="Field is required";
+      error2.textContent="Field is required";
+      error3.textContent="Field is required";
+      error4.textContent="Field is required";
+    }
+      else{
+        error1.textContent="Field is required";
+        error2.textContent="Field is required";
+        error3.textContent="Field is required";
+        error4.textContent="Field is required";
+        error5.textContent="Field is required";
+      }
+   })
+
+
     </script>
 </body>
 </html>
